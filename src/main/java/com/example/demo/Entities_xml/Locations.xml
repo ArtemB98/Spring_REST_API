@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="com.example.demo.Entities.Locations">
+        <table name="LOCATIONS" schema="HR" catalog=""/>
+        <attributes>
+            <id name="locationId">
+                <column name="LOCATION_ID" precision="4"/>
+            </id>
+            <basic name="streetAddress">
+                <column name="STREET_ADDRESS" nullable="false" length="40"/>
+            </basic>
+            <basic name="postalCode">
+                <column name="POSTAL_CODE" nullable="false" length="12"/>
+            </basic>
+            <basic name="city">
+                <column name="CITY" length="30"/>
+            </basic>
+            <basic name="stateProvince">
+                <column name="STATE_PROVINCE" nullable="false" length="25"/>
+            </basic>
+            <many-to-one name="countriesByCountryId" optional="true" target-entity="com.example.demo.Entities.Countries">
+                <join-column name="COUNTRY_ID" nullable="false" referenced-column-name="COUNTRY_ID"/>
+            </many-to-one>
+            <one-to-many name="departmentsByLocationId" mapped-by="locationsByLocationId"
+                         target-entity="com.example.demo.Entities.Departments"/>
+        </attributes>
+    </entity>
+</entity-mappings>

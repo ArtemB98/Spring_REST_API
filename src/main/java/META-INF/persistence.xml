@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>com/example/demo/Countries.xml</mapping-file>
+        <mapping-file>com/example/demo/Departments.xml</mapping-file>
+        <mapping-file>com/example/demo/Employees.xml</mapping-file>
+        <mapping-file>com/example/demo/Jobs.xml</mapping-file>
+        <mapping-file>com/example/demo/JobHistory.xml</mapping-file>
+        <mapping-file>com/example/demo/Locations.xml</mapping-file>
+        <mapping-file>com/example/demo/Regions.xml</mapping-file>
+        <class>com.example.demo.Countries</class>
+        <class>com.example.demo.Departments</class>
+        <class>com.example.demo.Employees</class>
+        <class>com.example.demo.Jobs</class>
+        <class>com.example.demo.JobHistory</class>
+        <class>com.example.demo.Locations</class>
+        <class>com.example.demo.Regions</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1523/orcl1"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
+            <property name="hibernate.connection.username" value="hr"/>
+            <property name="hibernate.connection.password" value="123"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

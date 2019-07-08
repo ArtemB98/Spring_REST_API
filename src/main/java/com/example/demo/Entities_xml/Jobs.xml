@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="com.example.demo.Entities.Jobs">
+        <table name="JOBS" schema="HR" catalog=""/>
+        <attributes>
+            <id name="jobId">
+                <column name="JOB_ID" length="10"/>
+            </id>
+            <basic name="jobTitle">
+                <column name="JOB_TITLE" length="35"/>
+            </basic>
+            <basic name="minSalary">
+                <column name="MIN_SALARY" nullable="false" precision="6"/>
+            </basic>
+            <basic name="maxSalary">
+                <column name="MAX_SALARY" nullable="false" precision="6"/>
+            </basic>
+            <one-to-many name="employeesByJobId" mapped-by="jobsByJobId" target-entity="com.example.demo.Entities.Employees"/>
+            <one-to-many name="jobHistoriesByJobId" mapped-by="jobsByJobId"
+                         target-entity="com.example.demo.Entities.JobHistory"/>
+        </attributes>
+    </entity>
+</entity-mappings>

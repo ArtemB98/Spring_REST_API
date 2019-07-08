@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="com.example.demo.Entities.JobHistory">
+        <table name="JOB_HISTORY" schema="HR" catalog=""/>
+        <id-class class="com.example.demo.Entities.JobHistoryPK"/>
+        <attributes>
+            <id name="employeeId">
+                <column name="EMPLOYEE_ID" precision="6"/>
+            </id>
+            <id name="startDate">
+                <column name="START_DATE" precision="-1"/>
+            </id>
+            <basic name="endDate">
+                <column name="END_DATE" precision="-1"/>
+            </basic>
+            <many-to-one name="employeesByEmployeeId" optional="true" target-entity="com.example.demo.Entities.Employees">
+                <join-column name="EMPLOYEE_ID" referenced-column-name="EMPLOYEE_ID"/>
+            </many-to-one>
+            <many-to-one name="jobsByJobId" optional="true" target-entity="com.example.demo.Entities.Jobs">
+                <join-column name="JOB_ID" referenced-column-name="JOB_ID"/>
+            </many-to-one>
+            <many-to-one name="departmentsByDepartmentId" optional="true" target-entity="com.example.demo.Entities.Departments">
+                <join-column name="DEPARTMENT_ID" nullable="false" referenced-column-name="DEPARTMENT_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
