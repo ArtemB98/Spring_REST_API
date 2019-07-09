@@ -30,7 +30,7 @@ public class JobHistoryController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
     public void deletehist(@PathVariable final Long id) throws Exception {
         if (JobHistoryService.findJobHistory(id) == null) {//???
-            throw new Exception("Employees to delete doesn´t exist");
+            throw new Exception("Employee to delete doesn´t exist");
         }
         JobHistoryService.deleteJobHistory(id);
     }
@@ -40,7 +40,7 @@ public class JobHistoryController {
     public List<JobHistory> findByid(@PathVariable final Long id) throws Exception {
         List<JobHistory> e = JobHistoryService.findJobHistory(id);
         if (e == null) {
-            throw new Exception("Employees with this ID doesn´t exist");
+            throw new Exception("Employee with this ID doesn´t exist");
         }
         return e;
     }

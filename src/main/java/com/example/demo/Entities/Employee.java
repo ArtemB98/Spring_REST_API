@@ -12,7 +12,8 @@ import java.util.Collection;
 
 @XmlRootElement(name = "Employee")
 @Entity
-public class Employees {
+@Table(name = "EMPLOYEES")
+public class Employee {
     @XmlElement
     private Long employeeId;
     @XmlElement
@@ -72,17 +73,17 @@ public class Employees {
     }
 
 
-    private Collection<Departments> departmentsByEmployeeId;
-    private Jobs jobsByJobId;
-    private Employees employeesByManagerId;
-    private Collection<Employees> employeesByEmployeeId;
-    private Departments departmentsByDepartmentId;
+    private Collection<Department> departmentByEmployeeId;
+    private Job jobByJobId;
+    private Employee employeeByManagerId;
+    private Collection<Employee> employeeByEmployeeId;
+    private Department departmentByDepartmentId;
     private Collection<JobHistory> jobHistoriesByEmployeeId;
 
-    public Employees() {
+    public Employee() {
         super();
     }
-    //public Employees(Long employeeId,String firstName, String lastName, String email, String phoneNumber, Time hireDate, Long Salary, Long commissionPct)
+    //public Employee(Long employeeId,String firstName, String lastName, String email, String phoneNumber, Time hireDate, Long Salary, Long commissionPct)
     //{
 
     //  }
@@ -181,17 +182,17 @@ public class Employees {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Employees employees = (Employees) o;
+        Employee employee = (Employee) o;
 
-        if (employeeId != null ? !employeeId.equals(employees.employeeId) : employees.employeeId != null) return false;
-        if (firstName != null ? !firstName.equals(employees.firstName) : employees.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(employees.lastName) : employees.lastName != null) return false;
-        if (email != null ? !email.equals(employees.email) : employees.email != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(employees.phoneNumber) : employees.phoneNumber != null)
+        if (employeeId != null ? !employeeId.equals(employee.employeeId) : employee.employeeId != null) return false;
+        if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
+        if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(employee.phoneNumber) : employee.phoneNumber != null)
             return false;
-        if (hireDate != null ? !hireDate.equals(employees.hireDate) : employees.hireDate != null) return false;
-        if (salary != null ? !salary.equals(employees.salary) : employees.salary != null) return false;
-        if (commissionPct != null ? !commissionPct.equals(employees.commissionPct) : employees.commissionPct != null)
+        if (hireDate != null ? !hireDate.equals(employee.hireDate) : employee.hireDate != null) return false;
+        if (salary != null ? !salary.equals(employee.salary) : employee.salary != null) return false;
+        if (commissionPct != null ? !commissionPct.equals(employee.commissionPct) : employee.commissionPct != null)
             return false;
 
         return true;
@@ -210,65 +211,65 @@ public class Employees {
         return result;
     }
 
-    @OneToMany(mappedBy = "employeesByManagerId")
-    public Collection<Departments> getDepartmentsByEmployeeId() {
-        return departmentsByEmployeeId;
+    @OneToMany(mappedBy = "employeeByManagerId")
+    public Collection<Department> getDepartmentByEmployeeId() {
+        return departmentByEmployeeId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setDepartmentsByEmployeeId(Collection<Departments> departmentsByEmployeeId) {
-        this.departmentsByEmployeeId = departmentsByEmployeeId;
+    public void setDepartmentByEmployeeId(Collection<Department> departmentByEmployeeId) {
+        this.departmentByEmployeeId = departmentByEmployeeId;
     }
 
     @ManyToOne ////////////////////
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false, insertable = false, updatable = false)
-    public Jobs getJobsByJobId() {
-        return jobsByJobId;
+    public Job getJobByJobId() {
+        return jobByJobId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setJobsByJobId(Jobs jobsByJobId) {
-        this.jobsByJobId = jobsByJobId;
+    public void setJobByJobId(Job jobByJobId) {
+        this.jobByJobId = jobByJobId;
     }
 
     @ManyToOne /////////////////////
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID", insertable = false, updatable = false)
-    public Employees getEmployeesByManagerId() {
-        return employeesByManagerId;
+    public Employee getEmployeeByManagerId() {
+        return employeeByManagerId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByManagerId(Employees employeesByManagerId) {
-        this.employeesByManagerId = employeesByManagerId;
+    public void setEmployeeByManagerId(Employee employeeByManagerId) {
+        this.employeeByManagerId = employeeByManagerId;
     }
 
-    @OneToMany(mappedBy = "employeesByManagerId")
-    public Collection<Employees> getEmployeesByEmployeeId() {
-        return employeesByEmployeeId;
+    @OneToMany(mappedBy = "employeeByManagerId")
+    public Collection<Employee> getEmployeeByEmployeeId() {
+        return employeeByEmployeeId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByEmployeeId(Collection<Employees> employeesByEmployeeId) {
-        this.employeesByEmployeeId = employeesByEmployeeId;
+    public void setEmployeeByEmployeeId(Collection<Employee> employeeByEmployeeId) {
+        this.employeeByEmployeeId = employeeByEmployeeId;
     }
 
     @ManyToOne /////////////
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID", insertable = false, updatable = false)
-    public Departments getDepartmentsByDepartmentId() {
-        return departmentsByDepartmentId;
+    public Department getDepartmentByDepartmentId() {
+        return departmentByDepartmentId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setDepartmentsByDepartmentId(Departments departmentsByDepartmentId) {
-        this.departmentsByDepartmentId = departmentsByDepartmentId;
+    public void setDepartmentByDepartmentId(Department departmentByDepartmentId) {
+        this.departmentByDepartmentId = departmentByDepartmentId;
     }
 
-    @OneToMany(mappedBy = "employeesByEmployeeId")
+    @OneToMany(mappedBy = "employeeByEmployeeId")
     public Collection<JobHistory> getJobHistoriesByEmployeeId() {
         return jobHistoriesByEmployeeId;
     }

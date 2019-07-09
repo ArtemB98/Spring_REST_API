@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Countries;
+import com.example.demo.Entities.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.CountriesRepository;
@@ -10,7 +10,7 @@ public class CountriesService {
     @Autowired
     private CountriesRepository CountriesRepository;
 
-    public Countries addCountry(Countries Country) {
+    public Country addCountry(Country Country) {
         return CountriesRepository.saveAndFlush(Country);
     }
 
@@ -18,11 +18,11 @@ public class CountriesService {
         CountriesRepository.deleteById(id);
     }
 
-    public Countries updateCountry(Countries Country) {
+    public Country updateCountry(Country Country) {
         return CountriesRepository.saveAndFlush(Country);
     }
 
-    public Countries findCount(String id) {
+    public Country findCount(String id) {
         return CountriesRepository.findByCountryId(id);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Departments;
+import com.example.demo.Entities.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.DepartmentsRepository;
@@ -10,11 +10,11 @@ public class DepartmentsService {
     @Autowired
     private DepartmentsRepository DepartmentsRepository;
 
-    public Departments findDepartment(Long id) {
+    public Department findDepartment(Long id) {
         return DepartmentsRepository.findByDepartmentId(id);
     }
 
-    public Departments addDepartment(Departments Department) {
+    public Department addDepartment(Department Department) {
         return DepartmentsRepository.saveAndFlush(Department);
     }
 
@@ -22,7 +22,7 @@ public class DepartmentsService {
         DepartmentsRepository.deleteById(id);
     }
 
-    public Departments updateDepartment(Departments Department) {
+    public Department updateDepartment(Department Department) {
         return DepartmentsRepository.saveAndFlush(Department);
     }
 }

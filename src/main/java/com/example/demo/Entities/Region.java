@@ -10,12 +10,13 @@ import java.util.Collection;
 
 @XmlRootElement(name = "Region")
 @Entity
-public class Regions {
+@Table(name = "REGIONS")
+public class Region {
     @XmlElement
     private Long regionId;
     @XmlElement
     private String regionName;
-    private Collection<Countries> countriesByRegionId;
+    private Collection<Country> countryByRegionId;
 
     @Id
     @Column(name = "REGION_ID", nullable = false, precision = 0)
@@ -44,10 +45,10 @@ public class Regions {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Regions regions = (Regions) o;
+        Region region = (Region) o;
 
-        if (regionId != null ? !regionId.equals(regions.regionId) : regions.regionId != null) return false;
-        if (regionName != null ? !regionName.equals(regions.regionName) : regions.regionName != null) return false;
+        if (regionId != null ? !regionId.equals(region.regionId) : region.regionId != null) return false;
+        if (regionName != null ? !regionName.equals(region.regionName) : region.regionName != null) return false;
 
         return true;
     }
@@ -59,14 +60,14 @@ public class Regions {
         return result;
     }
 
-    @OneToMany(mappedBy = "regionsByRegionId")
-    public Collection<Countries> getCountriesByRegionId() {
-        return countriesByRegionId;
+    @OneToMany(mappedBy = "regionByRegionId")
+    public Collection<Country> getCountryByRegionId() {
+        return countryByRegionId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setCountriesByRegionId(Collection<Countries> countriesByRegionId) {
-        this.countriesByRegionId = countriesByRegionId;
+    public void setCountryByRegionId(Collection<Country> countryByRegionId) {
+        this.countryByRegionId = countryByRegionId;
     }
 }

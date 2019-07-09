@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Jobs;
+import com.example.demo.Entities.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.JobsRepository;
@@ -10,11 +10,11 @@ public class JobsService {
     @Autowired
     private JobsRepository JobsRepository;
 
-    public Jobs findJob(String id) {
+    public Job findJob(String id) {
         return JobsRepository.findByJobId(id);
     }
 
-    public Jobs addJob(Jobs Job) {
+    public Job addJob(Job Job) {
         return JobsRepository.saveAndFlush(Job);
     }
 
@@ -22,7 +22,7 @@ public class JobsService {
         JobsRepository.deleteById(id);
     }
 
-    public Jobs updateJob(Jobs Job) {
+    public Job updateJob(Job Job) {
         return JobsRepository.saveAndFlush(Job);
     }
 }

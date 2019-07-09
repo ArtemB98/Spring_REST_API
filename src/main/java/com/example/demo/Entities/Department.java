@@ -10,7 +10,8 @@ import java.util.Collection;
 
 @XmlRootElement(name = "Department")
 @Entity
-public class Departments {
+@Table(name = "DEPARTMENTS")
+public class Department {
     @XmlElement
     private Long departmentId;
     @XmlElement
@@ -22,9 +23,9 @@ public class Departments {
     private Long locationId;
 
 
-    private Employees employeesByManagerId;
-    private Locations locationsByLocationId;
-    private Collection<Employees> employeesByDepartmentId;
+    private Employee employeeByManagerId;
+    private Location locationByLocationId;
+    private Collection<Employee> employeeByDepartmentId;
     private Collection<JobHistory> jobHistoriesByDepartmentId;
 
     @Id
@@ -77,7 +78,7 @@ public class Departments {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Departments that = (Departments) o;
+        Department that = (Department) o;
 
         if (departmentId != null ? !departmentId.equals(that.departmentId) : that.departmentId != null) return false;
         if (departmentName != null ? !departmentName.equals(that.departmentName) : that.departmentName != null)
@@ -96,40 +97,40 @@ public class Departments {
 
     @ManyToOne
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID", insertable = false, updatable = false)
-    public Employees getEmployeesByManagerId() {
-        return employeesByManagerId;
+    public Employee getEmployeeByManagerId() {
+        return employeeByManagerId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByManagerId(Employees employeesByManagerId) {
-        this.employeesByManagerId = employeesByManagerId;
+    public void setEmployeeByManagerId(Employee employeeByManagerId) {
+        this.employeeByManagerId = employeeByManagerId;
     }
 
     @ManyToOne
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID", insertable = false, updatable = false)
-    public Locations getLocationsByLocationId() {
-        return locationsByLocationId;
+    public Location getLocationByLocationId() {
+        return locationByLocationId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setLocationsByLocationId(Locations locationsByLocationId) {
-        this.locationsByLocationId = locationsByLocationId;
+    public void setLocationByLocationId(Location locationByLocationId) {
+        this.locationByLocationId = locationByLocationId;
     }
 
-    @OneToMany(mappedBy = "departmentsByDepartmentId")
-    public Collection<Employees> getEmployeesByDepartmentId() {
-        return employeesByDepartmentId;
+    @OneToMany(mappedBy = "departmentByDepartmentId")
+    public Collection<Employee> getEmployeeByDepartmentId() {
+        return employeeByDepartmentId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByDepartmentId(Collection<Employees> employeesByDepartmentId) {
-        this.employeesByDepartmentId = employeesByDepartmentId;
+    public void setEmployeeByDepartmentId(Collection<Employee> employeeByDepartmentId) {
+        this.employeeByDepartmentId = employeeByDepartmentId;
     }
 
-    @OneToMany(mappedBy = "departmentsByDepartmentId")
+    @OneToMany(mappedBy = "departmentByDepartmentId")
     public Collection<JobHistory> getJobHistoriesByDepartmentId() {
         return jobHistoriesByDepartmentId;
     }

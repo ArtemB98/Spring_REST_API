@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Employees;
+import com.example.demo.Entities.Employee;
 import com.example.demo.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,11 +14,11 @@ public class EmployeesService {
     @Autowired
     private EmployeesRepository EmployeesRepository;
 
-    public Employees findEmp(Long id) {
+    public Employee findEmp(Long id) {
         return EmployeesRepository.findByEmployeeId(id);
     }
 
-    public Employees addEmployee(Employees Employee) {
+    public Employee addEmployee(Employee Employee) {
         return EmployeesRepository.saveAndFlush(Employee);
     }
 
@@ -26,7 +26,7 @@ public class EmployeesService {
         EmployeesRepository.deleteById(id);
     }
 
-    public Employees updateEmployees(Employees Employee) {
+    public Employee updateEmployees(Employee Employee) {
         return EmployeesRepository.saveAndFlush(Employee);
     }
 
@@ -34,7 +34,7 @@ public class EmployeesService {
         return EmployeesRepository.getLastNamesWithColleaguesWithHigherSalaryAndEarlierHireDate();
     }
 
-    public List<Employees> getSQL2() {
+    public List<Employee> getSQL2() {
         return EmployeesRepository.getHighPayedEmployees();
     }
 }

@@ -8,9 +8,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name = "Jobs")
+@XmlRootElement(name = "Job")
 @Entity
-public class Jobs {
+@Table(name = "JOBS")
+public class Job {
     @XmlElement
     private String jobId;
     @XmlElement
@@ -19,7 +20,7 @@ public class Jobs {
     private Long minSalary;
     @XmlElement
     private Long maxSalary;
-    private Collection<Employees> employeesByJobId;
+    private Collection<Employee> employeeByJobId;
     private Collection<JobHistory> jobHistoriesByJobId;
 
     @Id
@@ -71,12 +72,12 @@ public class Jobs {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Jobs jobs = (Jobs) o;
+        Job job = (Job) o;
 
-        if (jobId != null ? !jobId.equals(jobs.jobId) : jobs.jobId != null) return false;
-        if (jobTitle != null ? !jobTitle.equals(jobs.jobTitle) : jobs.jobTitle != null) return false;
-        if (minSalary != null ? !minSalary.equals(jobs.minSalary) : jobs.minSalary != null) return false;
-        if (maxSalary != null ? !maxSalary.equals(jobs.maxSalary) : jobs.maxSalary != null) return false;
+        if (jobId != null ? !jobId.equals(job.jobId) : job.jobId != null) return false;
+        if (jobTitle != null ? !jobTitle.equals(job.jobTitle) : job.jobTitle != null) return false;
+        if (minSalary != null ? !minSalary.equals(job.minSalary) : job.minSalary != null) return false;
+        if (maxSalary != null ? !maxSalary.equals(job.maxSalary) : job.maxSalary != null) return false;
 
         return true;
     }
@@ -90,18 +91,18 @@ public class Jobs {
         return result;
     }
 
-    @OneToMany(mappedBy = "jobsByJobId")
-    public Collection<Employees> getEmployeesByJobId() {
-        return employeesByJobId;
+    @OneToMany(mappedBy = "jobByJobId")
+    public Collection<Employee> getEmployeeByJobId() {
+        return employeeByJobId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByJobId(Collection<Employees> employeesByJobId) {
-        this.employeesByJobId = employeesByJobId;
+    public void setEmployeeByJobId(Collection<Employee> employeeByJobId) {
+        this.employeeByJobId = employeeByJobId;
     }
 
-    @OneToMany(mappedBy = "jobsByJobId")
+    @OneToMany(mappedBy = "jobByJobId")
     public Collection<JobHistory> getJobHistoriesByJobId() {
         return jobHistoriesByJobId;
     }

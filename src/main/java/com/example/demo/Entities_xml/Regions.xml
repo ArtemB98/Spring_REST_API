@@ -2,7 +2,7 @@
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
         version="2.0">
 
-    <entity class="com.example.demo.Entities.Regions">
+    <entity class="com.example.demo.Entities.Region">
         <table name="REGIONS" schema="HR" catalog=""/>
         <attributes>
             <id name="regionId">
@@ -11,8 +11,8 @@
             <basic name="regionName">
                 <column name="REGION_NAME" nullable="false" length="25"/>
             </basic>
-            <one-to-many name="countriesByRegionId" mapped-by="regionsByRegionId"
-                         target-entity="com.example.demo.Entities.Countries"/>
+            <one-to-many name="countryByRegionId" mapped-by="regionByRegionId"
+                         target-entity="com.example.demo.Entities.Country"/>
         </attributes>
     </entity>
 </entity-mappings>

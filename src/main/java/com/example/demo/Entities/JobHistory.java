@@ -27,9 +27,9 @@ public class JobHistory {
     private Long departmentId;
 
 
-    private Employees employeesByEmployeeId;
-    private Jobs jobsByJobId;
-    private Departments departmentsByDepartmentId;
+    private Employee employeeByEmployeeId;
+    private Job jobByJobId;
+    private Department departmentByDepartmentId;
 
 
     @Id
@@ -112,37 +112,37 @@ public class JobHistory {
 
     @ManyToOne //////////////////////////////
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false, insertable = false, updatable = false)
-    public Employees getEmployeesByEmployeeId() {
-        return employeesByEmployeeId;
+    public Employee getEmployeeByEmployeeId() {
+        return employeeByEmployeeId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setEmployeesByEmployeeId(Employees employeesByEmployeeId) {
-        this.employeesByEmployeeId = employeesByEmployeeId;
+    public void setEmployeeByEmployeeId(Employee employeeByEmployeeId) {
+        this.employeeByEmployeeId = employeeByEmployeeId;
     }
 
     @ManyToOne
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false, insertable = false, updatable = false)
-    public Jobs getJobsByJobId() {
-        return jobsByJobId;
+    public Job getJobByJobId() {
+        return jobByJobId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setJobsByJobId(Jobs jobsByJobId) {
-        this.jobsByJobId = jobsByJobId;
+    public void setJobByJobId(Job jobByJobId) {
+        this.jobByJobId = jobByJobId;
     }
 
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID", insertable = false, updatable = false)
-    public Departments getDepartmentsByDepartmentId() {
-        return departmentsByDepartmentId;
+    public Department getDepartmentByDepartmentId() {
+        return departmentByDepartmentId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setDepartmentsByDepartmentId(Departments departmentsByDepartmentId) {
-        this.departmentsByDepartmentId = departmentsByDepartmentId;
+    public void setDepartmentByDepartmentId(Department departmentByDepartmentId) {
+        this.departmentByDepartmentId = departmentByDepartmentId;
     }
 }

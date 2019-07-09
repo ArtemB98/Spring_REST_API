@@ -11,7 +11,7 @@ import java.sql.Date;
 
 import com.example.demo.Services.EmployeesService;
 import com.example.demo.repository.EmployeesRepository;
-import com.example.demo.Entities.Employees;
+import com.example.demo.Entities.Employee;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -27,7 +27,7 @@ public class DemoApplicationTests {
 
     @Test
     public void SaveEmp() {
-        Employees emp = new Employees();
+        Employee emp = new Employee();
         emp.setEmployeeId(210L);
         emp.setFirstName("Artem");
         emp.setLastName("Berdnikov");

@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Regions;
+import com.example.demo.Entities.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.RegionsRepository;
@@ -10,11 +10,11 @@ public class RegionsService {
     @Autowired
     private RegionsRepository RegionsRepository;
 
-    public Regions findRegion(Long id) {
+    public Region findRegion(Long id) {
         return RegionsRepository.findByRegionId(id);
     }
 
-    public Regions addRegion(Regions Region) {
+    public Region addRegion(Region Region) {
         return RegionsRepository.saveAndFlush(Region);
     }
 
@@ -22,7 +22,7 @@ public class RegionsService {
         RegionsRepository.deleteById(id);
     }
 
-    public Regions updateRegion(Regions Region) {
+    public Region updateRegion(Region Region) {
         return RegionsRepository.saveAndFlush(Region);
     }
 }

@@ -2,7 +2,7 @@
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
         version="2.0">
 
-    <entity class="com.example.demo.Entities.Employees">
+    <entity class="com.example.demo.Entities.Employee">
         <table name="EMPLOYEES" schema="HR" catalog=""/>
         <attributes>
             <id name="employeeId">
@@ -29,20 +29,20 @@
             <basic name="commissionPct">
                 <column name="COMMISSION_PCT" nullable="false" precision="2"/>
             </basic>
-            <many-to-one name="jobsByJobId" optional="true" target-entity="com.example.demo.Entities.Jobs">
+            <many-to-one name="jobByJobId" optional="true" target-entity="com.example.demo.Entities.Job">
                 <join-column name="JOB_ID" referenced-column-name="JOB_ID"/>
             </many-to-one>
-            <many-to-one name="employeesByManagerId" optional="true" target-entity="com.example.demo.Entities.Employees">
+            <many-to-one name="employeeByManagerId" optional="true" target-entity="com.example.demo.Entities.Employee">
                 <join-column name="MANAGER_ID" nullable="false" referenced-column-name="EMPLOYEE_ID"/>
             </many-to-one>
-            <many-to-one name="departmentsByDepartmentId" optional="true" target-entity="com.example.demo.Entities.Departments">
+            <many-to-one name="departmentByDepartmentId" optional="true" target-entity="com.example.demo.Entities.Department">
                 <join-column name="DEPARTMENT_ID" nullable="false" referenced-column-name="DEPARTMENT_ID"/>
             </many-to-one>
-            <one-to-many name="departmentsByEmployeeId" mapped-by="employeesByManagerId"
-                         target-entity="com.example.demo.Entities.Departments"/>
-            <one-to-many name="employeesByEmployeeId" mapped-by="employeesByManagerId"
-                         target-entity="com.example.demo.Entities.Employees"/>
-            <one-to-many name="jobHistoriesByEmployeeId" mapped-by="employeesByEmployeeId"
+            <one-to-many name="departmentByEmployeeId" mapped-by="employeeByManagerId"
+                         target-entity="com.example.demo.Entities.Department"/>
+            <one-to-many name="employeeByEmployeeId" mapped-by="employeeByManagerId"
+                         target-entity="com.example.demo.Entities.Employee"/>
+            <one-to-many name="jobHistoriesByEmployeeId" mapped-by="employeeByEmployeeId"
                          target-entity="com.example.demo.Entities.JobHistory"/>
         </attributes>
     </entity>

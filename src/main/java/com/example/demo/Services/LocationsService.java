@@ -1,6 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Entities.Locations;
+import com.example.demo.Entities.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.LocationsRepository;
@@ -10,11 +10,11 @@ public class LocationsService {
     @Autowired
     private LocationsRepository LocationsRepository;
 
-    public Locations findLocation(Long id) {
+    public Location findLocation(Long id) {
         return LocationsRepository.findByLocationId(id);
     }
 
-    public Locations addLocation(Locations Location) {
+    public Location addLocation(Location Location) {
         return LocationsRepository.saveAndFlush(Location);
     }
 
@@ -22,7 +22,7 @@ public class LocationsService {
         LocationsRepository.deleteById(id);
     }
 
-    public Locations updateLocation(Locations Location) {
+    public Location updateLocation(Location Location) {
         return LocationsRepository.saveAndFlush(Location);
     }
 }

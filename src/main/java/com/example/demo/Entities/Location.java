@@ -9,8 +9,9 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
 @Entity
-@XmlRootElement(name = "Locations")
-public class Locations {
+@XmlRootElement(name = "Location")
+@Table(name = "LOCATIONS")
+public class Location {
     @XmlElement
     private Long locationId;
     @XmlElement
@@ -26,8 +27,8 @@ public class Locations {
     @XmlElement
     private String countryId;
 
-    private Collection<Departments> departmentsByLocationId;
-    private Countries countriesByCountryId;
+    private Collection<Department> departmentByLocationId;
+    private Country countryByCountryId;
 
 
     @Basic
@@ -102,14 +103,14 @@ public class Locations {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Locations locations = (Locations) o;
+        Location location = (Location) o;
 
-        if (locationId != null ? !locationId.equals(locations.locationId) : locations.locationId != null) return false;
-        if (streetAddress != null ? !streetAddress.equals(locations.streetAddress) : locations.streetAddress != null)
+        if (locationId != null ? !locationId.equals(location.locationId) : location.locationId != null) return false;
+        if (streetAddress != null ? !streetAddress.equals(location.streetAddress) : location.streetAddress != null)
             return false;
-        if (postalCode != null ? !postalCode.equals(locations.postalCode) : locations.postalCode != null) return false;
-        if (city != null ? !city.equals(locations.city) : locations.city != null) return false;
-        if (stateProvince != null ? !stateProvince.equals(locations.stateProvince) : locations.stateProvince != null)
+        if (postalCode != null ? !postalCode.equals(location.postalCode) : location.postalCode != null) return false;
+        if (city != null ? !city.equals(location.city) : location.city != null) return false;
+        if (stateProvince != null ? !stateProvince.equals(location.stateProvince) : location.stateProvince != null)
             return false;
 
         return true;
@@ -125,26 +126,26 @@ public class Locations {
         return result;
     }
 
-    @OneToMany(mappedBy = "locationsByLocationId")
-    public Collection<Departments> getDepartmentsByLocationId() {
-        return departmentsByLocationId;
+    @OneToMany(mappedBy = "locationByLocationId")
+    public Collection<Department> getDepartmentByLocationId() {
+        return departmentByLocationId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setDepartmentsByLocationId(Collection<Departments> departmentsByLocationId) {
-        this.departmentsByLocationId = departmentsByLocationId;
+    public void setDepartmentByLocationId(Collection<Department> departmentByLocationId) {
+        this.departmentByLocationId = departmentByLocationId;
     }
 
     @ManyToOne
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = false, updatable = false)
-    public Countries getCountriesByCountryId() {
-        return countriesByCountryId;
+    public Country getCountryByCountryId() {
+        return countryByCountryId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setCountriesByCountryId(Countries countriesByCountryId) {
-        this.countriesByCountryId = countriesByCountryId;
+    public void setCountryByCountryId(Country countryByCountryId) {
+        this.countryByCountryId = countryByCountryId;
     }
 }

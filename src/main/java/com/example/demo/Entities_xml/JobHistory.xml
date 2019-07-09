@@ -15,13 +15,13 @@
             <basic name="endDate">
                 <column name="END_DATE" precision="-1"/>
             </basic>
-            <many-to-one name="employeesByEmployeeId" optional="true" target-entity="com.example.demo.Entities.Employees">
+            <many-to-one name="employeeByEmployeeId" optional="true" target-entity="com.example.demo.Entities.Employee">
                 <join-column name="EMPLOYEE_ID" referenced-column-name="EMPLOYEE_ID"/>
             </many-to-one>
-            <many-to-one name="jobsByJobId" optional="true" target-entity="com.example.demo.Entities.Jobs">
+            <many-to-one name="jobByJobId" optional="true" target-entity="com.example.demo.Entities.Job">
                 <join-column name="JOB_ID" referenced-column-name="JOB_ID"/>
             </many-to-one>
-            <many-to-one name="departmentsByDepartmentId" optional="true" target-entity="com.example.demo.Entities.Departments">
+            <many-to-one name="departmentByDepartmentId" optional="true" target-entity="com.example.demo.Entities.Department">
                 <join-column name="DEPARTMENT_ID" nullable="false" referenced-column-name="DEPARTMENT_ID"/>
             </many-to-one>
         </attributes>

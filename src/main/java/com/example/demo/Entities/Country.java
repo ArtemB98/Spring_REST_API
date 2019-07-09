@@ -8,9 +8,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name = "Countries")
+@XmlRootElement(name = "Country")
 @Entity
-public class Countries {
+@Table(name = "COUNTRIES")
+public class Country {
     @XmlElement
     private String countryId;
     @XmlElement
@@ -20,8 +21,8 @@ public class Countries {
     private Long regionId;
 
 
-    private Regions regionsByRegionId;
-    private Collection<Locations> locationsByCountryId;
+    private Region regionByRegionId;
+    private Collection<Location> locationByCountryId;
 
     @Id
     @Column(name = "COUNTRY_ID", nullable = false, length = 2)
@@ -62,10 +63,10 @@ public class Countries {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Countries countries = (Countries) o;
+        Country country = (Country) o;
 
-        if (countryId != null ? !countryId.equals(countries.countryId) : countries.countryId != null) return false;
-        if (countryName != null ? !countryName.equals(countries.countryName) : countries.countryName != null)
+        if (countryId != null ? !countryId.equals(country.countryId) : country.countryId != null) return false;
+        if (countryName != null ? !countryName.equals(country.countryName) : country.countryName != null)
             return false;
 
         return true;
@@ -80,24 +81,24 @@ public class Countries {
 
     @ManyToOne
     @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID", insertable = false, updatable = false)
-    public Regions getRegionsByRegionId() {
-        return regionsByRegionId;
+    public Region getRegionByRegionId() {
+        return regionByRegionId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setRegionsByRegionId(Regions regionsByRegionId) {
-        this.regionsByRegionId = regionsByRegionId;
+    public void setRegionByRegionId(Region regionByRegionId) {
+        this.regionByRegionId = regionByRegionId;
     }
 
-    @OneToMany(mappedBy = "countriesByCountryId")
-    public Collection<Locations> getLocationsByCountryId() {
-        return locationsByCountryId;
+    @OneToMany(mappedBy = "countryByCountryId")
+    public Collection<Location> getLocationByCountryId() {
+        return locationByCountryId;
     }
 
     @XmlTransient
     @JsonIgnore
-    public void setLocationsByCountryId(Collection<Locations> locationsByCountryId) {
-        this.locationsByCountryId = locationsByCountryId;
+    public void setLocationByCountryId(Collection<Location> locationByCountryId) {
+        this.locationByCountryId = locationByCountryId;
     }
 }
