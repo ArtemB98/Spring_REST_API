@@ -1,6 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Countries;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -9,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name="Region")
+@XmlRootElement(name = "Region")
 @Entity
 public class Regions {
     @XmlElement
@@ -23,6 +22,7 @@ public class Regions {
     public Long getRegionId() {
         return regionId;
     }
+
     @XmlTransient
     public void setRegionId(Long regionId) {
         this.regionId = regionId;
@@ -33,6 +33,7 @@ public class Regions {
     public String getRegionName() {
         return regionName;
     }
+
     @XmlTransient
     public void setRegionName(String regionName) {
         this.regionName = regionName;
@@ -62,6 +63,7 @@ public class Regions {
     public Collection<Countries> getCountriesByRegionId() {
         return countriesByRegionId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setCountriesByRegionId(Collection<Countries> countriesByRegionId) {

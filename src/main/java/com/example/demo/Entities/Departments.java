@@ -1,8 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Employees;
-import com.example.demo.Entities.JobHistory;
-import com.example.demo.Entities.Locations;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name="Department")
+@XmlRootElement(name = "Department")
 @Entity
 public class Departments {
     @XmlElement
@@ -25,7 +22,6 @@ public class Departments {
     private Long locationId;
 
 
-
     private Employees employeesByManagerId;
     private Locations locationsByLocationId;
     private Collection<Employees> employeesByDepartmentId;
@@ -36,6 +32,7 @@ public class Departments {
     public Long getDepartmentId() {
         return departmentId;
     }
+
     @XmlTransient
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
@@ -46,15 +43,18 @@ public class Departments {
     public Long getManagerId() {
         return managerId;
     }
+
     @XmlTransient
     public void setManagerId(Long managerId) {
         this.managerId = managerId;
     }
+
     @Basic
     @Column(name = "LOCATION_ID", nullable = true, precision = 0)
     public Long getLocationId() {
         return locationId;
     }
+
     @XmlTransient
     public void setLocationId(Long locationId) {
         this.locationId = locationId;
@@ -66,6 +66,7 @@ public class Departments {
     public String getDepartmentName() {
         return departmentName;
     }
+
     @XmlTransient
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
@@ -94,7 +95,7 @@ public class Departments {
 
 
     @ManyToOne
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID", insertable = false, updatable = false)
     public Employees getEmployeesByManagerId() {
         return employeesByManagerId;
     }
@@ -106,10 +107,11 @@ public class Departments {
     }
 
     @ManyToOne
-    @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID", insertable = false, updatable = false)
     public Locations getLocationsByLocationId() {
         return locationsByLocationId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setLocationsByLocationId(Locations locationsByLocationId) {
@@ -120,6 +122,7 @@ public class Departments {
     public Collection<Employees> getEmployeesByDepartmentId() {
         return employeesByDepartmentId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setEmployeesByDepartmentId(Collection<Employees> employeesByDepartmentId) {
@@ -130,6 +133,7 @@ public class Departments {
     public Collection<JobHistory> getJobHistoriesByDepartmentId() {
         return jobHistoriesByDepartmentId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setJobHistoriesByDepartmentId(Collection<JobHistory> jobHistoriesByDepartmentId) {

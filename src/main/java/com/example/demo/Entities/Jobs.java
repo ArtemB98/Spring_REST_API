@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Employees;
-import com.example.demo.Entities.JobHistory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name="Jobs")
+@XmlRootElement(name = "Jobs")
 @Entity
 public class Jobs {
     @XmlElement
@@ -29,6 +27,7 @@ public class Jobs {
     public String getJobId() {
         return jobId;
     }
+
     @XmlTransient
     public void setJobId(String jobId) {
         this.jobId = jobId;
@@ -39,6 +38,7 @@ public class Jobs {
     public String getJobTitle() {
         return jobTitle;
     }
+
     @XmlTransient
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
@@ -49,6 +49,7 @@ public class Jobs {
     public Long getMinSalary() {
         return minSalary;
     }
+
     @XmlTransient
     public void setMinSalary(Long minSalary) {
         this.minSalary = minSalary;
@@ -59,6 +60,7 @@ public class Jobs {
     public Long getMaxSalary() {
         return maxSalary;
     }
+
     @XmlTransient
     public void setMaxSalary(Long maxSalary) {
         this.maxSalary = maxSalary;
@@ -92,6 +94,7 @@ public class Jobs {
     public Collection<Employees> getEmployeesByJobId() {
         return employeesByJobId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setEmployeesByJobId(Collection<Employees> employeesByJobId) {
@@ -102,6 +105,7 @@ public class Jobs {
     public Collection<JobHistory> getJobHistoriesByJobId() {
         return jobHistoriesByJobId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setJobHistoriesByJobId(Collection<JobHistory> jobHistoriesByJobId) {

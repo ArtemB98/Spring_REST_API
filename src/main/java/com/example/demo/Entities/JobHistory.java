@@ -1,9 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Departments;
-import com.example.demo.Entities.Employees;
-import com.example.demo.Entities.JobHistoryPK;
-import com.example.demo.Entities.Jobs;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,12 +7,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 @Table(name = "JOB_HISTORY", schema = "HR", catalog = "")
 @IdClass(JobHistoryPK.class)
-@XmlRootElement(name="JobHistory")
+@XmlRootElement(name = "JobHistory")
 public class JobHistory {
     @XmlElement
     private Long employeeId;
@@ -42,6 +37,7 @@ public class JobHistory {
     public Long getEmployeeId() {
         return employeeId;
     }
+
     @XmlTransient
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
@@ -52,6 +48,7 @@ public class JobHistory {
     public Date getStartDate() {
         return startDate;
     }
+
     @XmlTransient
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
@@ -59,23 +56,25 @@ public class JobHistory {
 
     @Basic
     @Column(name = "JOB_ID", nullable = false, precision = 0)
-    public String getJobId() { return jobId; }
+    public String getJobId() {
+        return jobId;
+    }
+
     @XmlTransient
     public void setJobId(String jobId) {
         this.jobId = jobId;
     }
+
     @Basic
     @Column(name = "DEPARTMENT_ID", nullable = true, precision = 0)
     public Long getDepartmentId() {
         return departmentId;
     }
+
     @XmlTransient
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
-
-
-
 
 
     @Basic
@@ -83,6 +82,7 @@ public class JobHistory {
     public Date getEndDate() {
         return endDate;
     }
+
     @XmlTransient
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
@@ -111,10 +111,11 @@ public class JobHistory {
     }
 
     @ManyToOne //////////////////////////////
-    @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false, insertable = false, updatable = false)
     public Employees getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setEmployeesByEmployeeId(Employees employeesByEmployeeId) {
@@ -122,10 +123,11 @@ public class JobHistory {
     }
 
     @ManyToOne
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false, insertable = false, updatable = false)
     public Jobs getJobsByJobId() {
         return jobsByJobId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setJobsByJobId(Jobs jobsByJobId) {
@@ -133,10 +135,11 @@ public class JobHistory {
     }
 
     @ManyToOne
-    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID", insertable = false, updatable = false)
     public Departments getDepartmentsByDepartmentId() {
         return departmentsByDepartmentId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setDepartmentsByDepartmentId(Departments departmentsByDepartmentId) {

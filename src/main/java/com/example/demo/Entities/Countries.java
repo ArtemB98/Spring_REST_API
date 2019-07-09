@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Locations;
-import com.example.demo.Entities.Regions;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
-@XmlRootElement(name="Countries")
+@XmlRootElement(name = "Countries")
 @Entity
 public class Countries {
     @XmlElement
@@ -30,6 +28,7 @@ public class Countries {
     public String getCountryId() {
         return countryId;
     }
+
     @XmlTransient
     public void setCountryId(String countryId) {
         this.countryId = countryId;
@@ -40,9 +39,11 @@ public class Countries {
     public Long getRegionId() {
         return regionId;
     }
-    @XmlTransient
-    public void setRegionId(Long regionId) { this.regionId = regionId; }
 
+    @XmlTransient
+    public void setRegionId(Long regionId) {
+        this.regionId = regionId;
+    }
 
 
     @Basic
@@ -50,6 +51,7 @@ public class Countries {
     public String getCountryName() {
         return countryName;
     }
+
     @XmlTransient
     public void setCountryName(String countryName) {
         this.countryName = countryName;
@@ -77,10 +79,11 @@ public class Countries {
     }
 
     @ManyToOne
-    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID", insertable = false, updatable = false)
     public Regions getRegionsByRegionId() {
         return regionsByRegionId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setRegionsByRegionId(Regions regionsByRegionId) {
@@ -91,6 +94,7 @@ public class Countries {
     public Collection<Locations> getLocationsByCountryId() {
         return locationsByCountryId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setLocationsByCountryId(Collection<Locations> locationsByCountryId) {

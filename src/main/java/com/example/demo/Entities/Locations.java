@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import com.example.demo.Entities.Countries;
-import com.example.demo.Entities.Departments;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,7 +9,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
 @Entity
-@XmlRootElement(name="Locations")
+@XmlRootElement(name = "Locations")
 public class Locations {
     @XmlElement
     private Long locationId;
@@ -25,7 +23,6 @@ public class Locations {
     private String stateProvince;
 
 
-
     @XmlElement
     private String countryId;
 
@@ -33,12 +30,12 @@ public class Locations {
     private Countries countriesByCountryId;
 
 
-
     @Basic
     @Column(name = "COUNTRY_ID", nullable = true, length = 2)
     public String getCountryId() {
         return countryId;
     }
+
     @XmlTransient
     public void setCountryId(String countryId) {
         this.countryId = countryId;
@@ -50,6 +47,7 @@ public class Locations {
     public Long getLocationId() {
         return locationId;
     }
+
     @XmlTransient
     public void setLocationId(Long locationId) {
         this.locationId = locationId;
@@ -60,6 +58,7 @@ public class Locations {
     public String getStreetAddress() {
         return streetAddress;
     }
+
     @XmlTransient
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
@@ -70,6 +69,7 @@ public class Locations {
     public String getPostalCode() {
         return postalCode;
     }
+
     @XmlTransient
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
@@ -80,6 +80,7 @@ public class Locations {
     public String getCity() {
         return city;
     }
+
     @XmlTransient
     public void setCity(String city) {
         this.city = city;
@@ -90,6 +91,7 @@ public class Locations {
     public String getStateProvince() {
         return stateProvince;
     }
+
     @XmlTransient
     public void setStateProvince(String stateProvince) {
         this.stateProvince = stateProvince;
@@ -127,6 +129,7 @@ public class Locations {
     public Collection<Departments> getDepartmentsByLocationId() {
         return departmentsByLocationId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setDepartmentsByLocationId(Collection<Departments> departmentsByLocationId) {
@@ -134,10 +137,11 @@ public class Locations {
     }
 
     @ManyToOne
-    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID", insertable = false, updatable = false)
     public Countries getCountriesByCountryId() {
         return countriesByCountryId;
     }
+
     @XmlTransient
     @JsonIgnore
     public void setCountriesByCountryId(Countries countriesByCountryId) {

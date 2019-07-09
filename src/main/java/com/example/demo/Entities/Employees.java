@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.sql.Date;
 import java.util.Collection;
 
-@XmlRootElement(name="Employee")
+@XmlRootElement(name = "Employee")
 @Entity
 public class Employees {
     @XmlElement
@@ -37,31 +37,39 @@ public class Employees {
     private Long manager_id;
     @XmlElement
     private Long department_id;
+
     @Basic
     @Column(name = "MANAGER_ID", nullable = true, length = 6)
     public Long getManager_id() {
         return manager_id;
     }
+
     @XmlTransient
     public void setManager_id(Long manager_id) {
         this.manager_id = manager_id;
     }
+
     @Basic
     @Column(name = "DEPARTMENT_ID", nullable = true, length = 6)
     public Long getDepartment_id() {
         return department_id;
     }
+
     @XmlTransient
     public void setDepartment_id(Long department_id) {
         this.department_id = department_id;
     }
+
     @Basic
     @Column(name = "JOB_ID", nullable = false, length = 10)
     public String getJob_id() {
         return job_id;
     }
+
     @XmlTransient
-    public void setJob_id(String job_id) { this.job_id = job_id; }
+    public void setJob_id(String job_id) {
+        this.job_id = job_id;
+    }
 
 
     private Collection<Departments> departmentsByEmployeeId;
@@ -71,16 +79,19 @@ public class Employees {
     private Departments departmentsByDepartmentId;
     private Collection<JobHistory> jobHistoriesByEmployeeId;
 
-    public Employees(){super();}
+    public Employees() {
+        super();
+    }
     //public Employees(Long employeeId,String firstName, String lastName, String email, String phoneNumber, Time hireDate, Long Salary, Long commissionPct)
     //{
 
-  //  }
+    //  }
     @Id
     @Column(name = "EMPLOYEE_ID", nullable = false, precision = 0)
     public Long getEmployeeId() {
         return employeeId;
     }
+
     @XmlTransient
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
@@ -91,6 +102,7 @@ public class Employees {
     public String getFirstName() {
         return firstName;
     }
+
     @XmlTransient
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -101,6 +113,7 @@ public class Employees {
     public String getLastName() {
         return lastName;
     }
+
     @XmlTransient
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -111,6 +124,7 @@ public class Employees {
     public String getEmail() {
         return email;
     }
+
     @XmlTransient
     public void setEmail(String email) {
         this.email = email;
@@ -135,7 +149,7 @@ public class Employees {
     }
 
     @XmlTransient
-   // public void setHireDate(Time hireDate) {
+    // public void setHireDate(Time hireDate) {
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
@@ -208,7 +222,7 @@ public class Employees {
     }
 
     @ManyToOne ////////////////////
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false, insertable = false, updatable = false)
     public Jobs getJobsByJobId() {
         return jobsByJobId;
     }
@@ -220,7 +234,7 @@ public class Employees {
     }
 
     @ManyToOne /////////////////////
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID", insertable = false, updatable = false)
     public Employees getEmployeesByManagerId() {
         return employeesByManagerId;
     }
@@ -243,7 +257,7 @@ public class Employees {
     }
 
     @ManyToOne /////////////
-    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID",insertable=false, updatable=false)
+    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID", insertable = false, updatable = false)
     public Departments getDepartmentsByDepartmentId() {
         return departmentsByDepartmentId;
     }

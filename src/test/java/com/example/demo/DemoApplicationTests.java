@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import java.sql.Date;
+
 import com.example.demo.Services.EmployeesService;
 import com.example.demo.repository.EmployeesRepository;
 import com.example.demo.Entities.Employees;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -23,14 +26,13 @@ public class DemoApplicationTests {
     private EmployeesService empServ;
 
     @Test
-    public void SaveEmp()
-    {
+    public void SaveEmp() {
         Employees emp = new Employees();
         emp.setEmployeeId(210L);
         emp.setFirstName("Artem");
         emp.setLastName("Berdnikov");
         emp.setEmail("artem.ru");
-        emp.setHireDate(new Date(10,11,12));
+        emp.setHireDate(new Date(10, 11, 12));
         emp.setJob_id("AD_VP");
         emp.setDepartment_id(90L);
         emp.setManager_id(100L);
