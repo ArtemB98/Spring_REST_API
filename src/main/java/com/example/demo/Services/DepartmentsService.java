@@ -11,7 +11,7 @@ public class DepartmentsService {
     private DepartmentsRepository DepartmentsRepository;
 
     public Departments findDepartment(Long id) {
-        return DepartmentsRepository.findByid(id);
+        return DepartmentsRepository.findByDepartmentId(id);
     }
 
     public Departments addDepartment(Departments Department) {

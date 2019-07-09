@@ -23,6 +23,6 @@ public class CountriesService {
     }
 
     public Countries findCount(String id) {
-        return CountriesRepository.findByid(id);
+        return CountriesRepository.findByCountryId(id);
     }
 }

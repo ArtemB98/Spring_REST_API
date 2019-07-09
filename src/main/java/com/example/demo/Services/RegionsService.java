@@ -11,7 +11,7 @@ public class RegionsService {
     private RegionsRepository RegionsRepository;
 
     public Regions findRegion(Long id) {
-        return RegionsRepository.findByid(id);
+        return RegionsRepository.findByRegionId(id);
     }
 
     public Regions addRegion(Regions Region) {

@@ -15,7 +15,7 @@ public class EmployeesService {
     private EmployeesRepository EmployeesRepository;
 
     public Employees findEmp(Long id) {
-        return EmployeesRepository.findByid(id);
+        return EmployeesRepository.findByEmployeeId(id);
     }
 
     public Employees addEmployee(Employees Employee) {

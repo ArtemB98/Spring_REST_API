@@ -11,7 +11,7 @@ public class JobsService {
     private JobsRepository JobsRepository;
 
     public Jobs findJob(String id) {
-        return JobsRepository.findByid(id);
+        return JobsRepository.findByJobId(id);
     }
 
     public Jobs addJob(Jobs Job) {

@@ -13,7 +13,7 @@ public class JobHistoryService {
     private JobHistoryRepository JobHistoryRepository;
 
     public List<JobHistory> findJobHistory(Long id) {
-        return JobHistoryRepository.findByid(id);
+        return JobHistoryRepository. findAllByEmployeeId(id);
     }
 
     public JobHistory addJobHistory(JobHistory JobHistory) {

@@ -11,7 +11,7 @@ public class LocationsService {
     private LocationsRepository LocationsRepository;
 
     public Locations findLocation(Long id) {
-        return LocationsRepository.findByid(id);
+        return LocationsRepository.findByLocationId(id);
     }
 
     public Locations addLocation(Locations Location) {
