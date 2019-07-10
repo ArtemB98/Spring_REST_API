@@ -1,8 +1,8 @@
-package com.example.demo.Controllers;
+package com.example.RestService.Controllers;
 
-
-import com.example.demo.Entities.Department;
-import com.example.demo.Services.DepartmentsService;
+import com.example.RestService.Controllers.Services.DepartmentsService;
+import com.example.RestService.Controllers.Services.Repositories.Entities.Department;
+import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.DepartmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,13 +16,13 @@ public class DepartmentController {
     private DepartmentsService DepartmentService;
 
     @RequestMapping(value = "/update", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Department> upddep(@RequestBody Department depload) throws Exception {
-        return new ResponseEntity<Department>(DepartmentService.updateDepartment(depload), HttpStatus.OK);
+    public ResponseEntity<DepartmentDTO> upddep(@RequestBody DepartmentDTO depload) throws Exception {
+        return new ResponseEntity<DepartmentDTO>(DepartmentService.updateDepartment(DepartmentService.DepartmentDTOToEntity(depload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Department> postdep(@RequestBody Department depload) throws Exception {
-        return new ResponseEntity<Department>(DepartmentService.addDepartment(depload), HttpStatus.OK);
+    public ResponseEntity<DepartmentDTO> postdep(@RequestBody DepartmentDTO depload) throws Exception {
+        return new ResponseEntity<DepartmentDTO>(DepartmentService.addDepartment(DepartmentService.DepartmentDTOToEntity(depload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
@@ -35,11 +35,11 @@ public class DepartmentController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
     //@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Department findByid(@PathVariable final Long id) throws Exception {
+    public DepartmentDTO findByid(@PathVariable final Long id) throws Exception {
         Department e = DepartmentService.findDepartment(id);
         if (e == null) {
             throw new Exception("Department with this ID doesn´t exist");
         }
-        return e;
+        return DepartmentService.EntityToDTO(e);
     }
 }

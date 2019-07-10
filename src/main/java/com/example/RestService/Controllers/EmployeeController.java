@@ -1,7 +1,8 @@
-package com.example.demo.Controllers;
+package com.example.RestService.Controllers;
 
-import com.example.demo.Entities.Employee;
-import com.example.demo.Services.EmployeesService;
+import com.example.RestService.Controllers.Services.EmployeesService;
+import com.example.RestService.Controllers.Services.Repositories.Entities.Employee;
+import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,13 +18,13 @@ public class EmployeeController {
     private EmployeesService employeeService;
 
     @RequestMapping(value = "/update", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Employee> updeemp(@RequestBody Employee empload) throws Exception {
-        return new ResponseEntity<Employee>(employeeService.updateEmployees(empload), HttpStatus.OK);
+    public ResponseEntity<EmployeeDTO> updeemp(@RequestBody EmployeeDTO empload) throws Exception {
+        return new ResponseEntity<EmployeeDTO>(employeeService.updateEmployees(employeeService.EmployeeDTOToEntity(empload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Employee> posteemp(@RequestBody Employee empload) throws Exception {
-        return new ResponseEntity<Employee>(employeeService.addEmployee(empload), HttpStatus.OK);
+    public ResponseEntity<EmployeeDTO> posteemp(@RequestBody EmployeeDTO empload) throws Exception {
+        return new ResponseEntity<EmployeeDTO>(employeeService.addEmployee(employeeService.EmployeeDTOToEntity(empload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
@@ -36,12 +37,12 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
     // @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Employee findByid(@PathVariable final Long id) throws Exception {
+    public EmployeeDTO findByid(@PathVariable final Long id) throws Exception {
         Employee e = employeeService.findEmp(id);
         if (e == null) {
             throw new Exception("Employee with this ID doesn´t exist");
         }
-        return e;
+        return employeeService.EntityToDTO(e);
     }
 
     @RequestMapping(value = "/getLastNamesWithColleaguesWithHigherSalaryAndEarlierHireDate", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
@@ -50,7 +51,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/getHighPayedEmployees", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
-    public List<Employee> runsql2() {
+    public List<EmployeeDTO> runsql2() {
         return employeeService.getSQL2();
     }
 }

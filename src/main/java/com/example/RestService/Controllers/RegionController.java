@@ -1,8 +1,8 @@
-package com.example.demo.Controllers;
+package com.example.RestService.Controllers;
 
-
-import com.example.demo.Entities.Region;
-import com.example.demo.Services.RegionsService;
+import com.example.RestService.Controllers.Services.RegionsService;
+import com.example.RestService.Controllers.Services.Repositories.Entities.Region;
+import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.RegionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,13 +16,13 @@ public class RegionController {
     private RegionsService RegionsService;
 
     @RequestMapping(value = "/update", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Region> updereg(@RequestBody Region regload) throws Exception {
-        return new ResponseEntity<Region>(RegionsService.updateRegion(regload), HttpStatus.OK);
+    public ResponseEntity<RegionDTO> updereg(@RequestBody RegionDTO regload) throws Exception {
+        return new ResponseEntity<RegionDTO>(RegionsService.updateRegion(RegionsService.RegionDTOToEntity(regload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<Region> postreg(@RequestBody Region regload) throws Exception {
-        return new ResponseEntity<Region>(RegionsService.addRegion(regload), HttpStatus.OK);
+    public ResponseEntity<RegionDTO> postreg(@RequestBody RegionDTO regload) throws Exception {
+        return new ResponseEntity<RegionDTO>(RegionsService.addRegion(RegionsService.RegionDTOToEntity(regload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
@@ -35,11 +35,11 @@ public class RegionController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
     //@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Region findByid(@PathVariable final Long id) throws Exception {
+    public RegionDTO findByid(@PathVariable final Long id) throws Exception {
         Region e = RegionsService.findRegion(id);
         if (e == null) {
             throw new Exception("Region with this ID doesn´t exist");
         }
-        return e;
+        return RegionsService.EntityToDTO(e);
     }
 }

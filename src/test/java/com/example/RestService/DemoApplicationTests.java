@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.RestService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
 
-import com.example.demo.Services.EmployeesService;
-import com.example.demo.repository.EmployeesRepository;
-import com.example.demo.Entities.Employee;
+import com.example.RestService.Controllers.Services.EmployeesService;
+import com.example.RestService.Controllers.Services.Repositories.EmployeesRepository;
+import com.example.RestService.Controllers.Services.Repositories.Entities.Employee;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -37,6 +37,6 @@ public class DemoApplicationTests {
         emp.setDepartment_id(90L);
         emp.setManager_id(100L);
         when(empRep.saveAndFlush(emp)).thenReturn(emp);
-        assertEquals(emp, empServ.addEmployee(emp));
+        assertEquals(emp, empServ.EmployeeDTOToEntity(empServ.addEmployee(emp)));
     }
 }

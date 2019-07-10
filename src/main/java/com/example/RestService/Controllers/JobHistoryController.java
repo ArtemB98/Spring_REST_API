@@ -1,14 +1,15 @@
-package com.example.demo.Controllers;
+package com.example.RestService.Controllers;
 
-
-import com.example.demo.Entities.JobHistory;
-import com.example.demo.Services.JobHistoryService;
+import com.example.RestService.Controllers.Services.Repositories.Entities.JobHistory;
+import com.example.RestService.Controllers.Services.JobHistoryService;
+import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.JobHistoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,13 +19,13 @@ public class JobHistoryController {
     private JobHistoryService JobHistoryService;
 
     @RequestMapping(value = "/update", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<JobHistory> updhist(@RequestBody JobHistory histload) throws Exception {
-        return new ResponseEntity<JobHistory>(JobHistoryService.updateJobHistory(histload), HttpStatus.OK);
+    public ResponseEntity<JobHistoryDTO> updhist(@RequestBody JobHistoryDTO histload) throws Exception {
+        return new ResponseEntity<JobHistoryDTO>(JobHistoryService.updateJobHistory(JobHistoryService.JobHistoryDTOToEntity(histload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE}, headers = "Accept=application/json")
-    public ResponseEntity<JobHistory> postehist(@RequestBody JobHistory histload) throws Exception {
-        return new ResponseEntity<JobHistory>(JobHistoryService.addJobHistory(histload), HttpStatus.OK);
+    public ResponseEntity<JobHistoryDTO> postehist(@RequestBody JobHistoryDTO histload) throws Exception {
+        return new ResponseEntity<JobHistoryDTO>(JobHistoryService.addJobHistory(JobHistoryService.JobHistoryDTOToEntity(histload)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
@@ -37,11 +38,14 @@ public class JobHistoryController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
     //  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public List<JobHistory> findByid(@PathVariable final Long id) throws Exception {
+    public List<JobHistoryDTO> findByid(@PathVariable final Long id) throws Exception {
         List<JobHistory> e = JobHistoryService.findJobHistory(id);
         if (e == null) {
             throw new Exception("Employee with this ID doesn´t exist");
         }
-        return e;
+        List<JobHistoryDTO> e1 = new ArrayList<JobHistoryDTO>();
+        for (int i = 0; i < e.size(); i++)
+            e1.add(JobHistoryService.EntityToDTO(e.get(i)));
+        return e1;
     }
 }
