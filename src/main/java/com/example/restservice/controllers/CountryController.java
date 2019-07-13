@@ -1,8 +1,8 @@
-package com.example.RestService.Controllers;
+package com.example.restservice.controllers;
 
-import com.example.RestService.Controllers.Services.CountriesService;
-import com.example.RestService.Controllers.Services.Repositories.Entities.Country;
-import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.CountryDTO;
+import com.example.restservice.entities.Country;
+import com.example.restservice.entityDTOs.CountryDTO;
+import com.example.restservice.services.CountriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

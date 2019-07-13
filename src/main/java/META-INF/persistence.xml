@@ -10,13 +10,13 @@
         <mapping-file>com/example/demo/JobHistory.xml</mapping-file>
         <mapping-file>com/example/demo/Locations.xml</mapping-file>
         <mapping-file>com/example/demo/Regions.xml</mapping-file>
-        <class>com.example.RestService.Countries</class>
-        <class>com.example.RestService.Departments</class>
-        <class>com.example.RestService.Employees</class>
-        <class>com.example.RestService.Jobs</class>
-        <class>com.example.RestService.JobHistory</class>
-        <class>com.example.RestService.Locations</class>
-        <class>com.example.RestService.Regions</class>
+        <class>com.example.restservice.Countries</class>
+        <class>com.example.restservice.Departments</class>
+        <class>com.example.restservice.Employees</class>
+        <class>com.example.restservice.Jobs</class>
+        <class>com.example.restservice.JobHistory</class>
+        <class>com.example.restservice.Locations</class>
+        <class>com.example.restservice.Regions</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1523/orcl1"/>
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>

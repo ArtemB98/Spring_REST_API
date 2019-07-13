@@ -1,8 +1,8 @@
-package com.example.RestService.Controllers;
+package com.example.restservice.controllers;
 
-import com.example.RestService.Controllers.Services.JobsService;
-import com.example.RestService.Controllers.Services.Repositories.Entities.Job;
-import com.example.RestService.Controllers.Services.Repositories.EntityDTOs.JobDTO;
+import com.example.restservice.entities.Job;
+import com.example.restservice.entityDTOs.JobDTO;
+import com.example.restservice.services.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

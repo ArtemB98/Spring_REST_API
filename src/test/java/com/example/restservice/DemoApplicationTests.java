@@ -1,5 +1,8 @@
-package com.example.RestService;
+package com.example.restservice;
 
+import com.example.restservice.entities.Employee;
+import com.example.restservice.services.EmployeesService;
+import com.example.restservice.services.repositories.EmployeesRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
-
-import com.example.RestService.Controllers.Services.EmployeesService;
-import com.example.RestService.Controllers.Services.Repositories.EmployeesRepository;
-import com.example.RestService.Controllers.Services.Repositories.Entities.Employee;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;

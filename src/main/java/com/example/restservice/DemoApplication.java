@@ -1,4 +1,4 @@
-package com.example.RestService;
+package com.example.restservice;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
