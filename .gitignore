@@ -36,17 +36,10 @@ out
 build
 .idea/
 .gradle/
-.classpath
-.project
-.settings
 .checkstyle
-.factorypath
-
-*.iml
 *.jar
 *.war
 *.ear
 *.log
 log.txt
-target/
 localize/
